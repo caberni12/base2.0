@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generador de Código de Barras 2.0</title>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.3/xlsx.full.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.0/dist/JsBarcode.all.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+            
+    <div class="container">
+          <div id="logo-container">
+            <!-- Aquí se coloca el logo de código de barras, puedes cambiar la URL con la dirección de tu logo -->
+            <img src="C:\Users\aleja\OneDrive\Escritorio\PROYECTO DE CODIGO DE BARRA 2.O\logo.png" alt="Logo Código de Barra">
+        </div>
+        <h2>Sistema Generador de Código de Barras 2.0</h2>
+        <h2>Dasarrollado por Alejandro Silva</h2>
+        <button onclick="mostrarModalGestionCodigos()">Importar Archivo</button>
+        <button onclick="preAgregarEtiquetas()">Pre-agregar Etiquetas</button>
+        <button onclick="generarEtiquetas()">Generar Etiquetas</button>
+        <button onclick="imprimirEtiquetas()">Imprimir Etiquetas</button>
+        <div id="contenedorFormulario" style="height: 800px;margin-top: 20px; overflow-y: auto;">
+            
+            
+            <label for="unidades">Codigo:</label>
+            <input type="text" id="codigo" placeholder="Código" oninput="buscarDescripcion()" onkeydown="comprobarEnter(event)">
+            <label for="text">Descripcion:</label>
+            <input type="text" id="descripcion" placeholder="Descripción" >
+            <label for="unidades">Unidades:</label>
+            <input type="number" id="unidades" placeholder="Cantidad de Unidades" min="1" value="1">
+            <label for="text">Cantidad de Etiquetas:</label>
+            <input type="number" id="cantidad" placeholder="Cantidad de etiquetas" min="1" value="1">
+
+            <h2>Configuración de Parámetros</h2>
+            <input type="number" id="anchoCodigo" placeholder="Ancho del código de barras" value="60">
+            <input type="number" id="altoCodigo" placeholder="Alto del código de barras" value="607">
+            <input type="number" id="zoom" placeholder="Zoom (Multiplicador)" value="1" step="0.1">
+            <input type="number" id="ancho" placeholder="Ancho (cm)" min="1" value="10">
+            <input type="number" id="alto" placeholder="Alto (cm)" min="1" value="5">
+
+            <div id="etiquetas"></div>
+        </div>
+
+        
+
+        <div id="modalGestionCodigos" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="cerrarModalGestionCodigos()">&times;</span>
+                <div class="modal-header">
+                    <h3>Gestionar Códigos</h3>
+                </div>
+                <select>
+                    <option value="portrait">Vertical</option>
+                    <option value="landscape">Horizontal</option>
+                </select>
+                <input type="file" id="importarArchivo" accept=".xlsx" onchange="cargarArchivo(event)">
+                
+                <input type="text" id="busqueda" class="search-input" placeholder="Buscar..." oninput="filtrarTabla()">
+                
+                <div class="modal-table-wrapper">
+                    <table class="modal-table">
+                        <thead>
+                            <tr>
+                                <th>Código</th>
+                                <th>Descripción</th>
+                                <th>Eliminar</th>
+                            </tr>
+                        </thead>
+                        <tbody id="listCodigos"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="scripts.js"></script>
+    <script src="scripts2.js"></script>
+    
+</body>
+</html>

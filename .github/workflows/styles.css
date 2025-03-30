@@ -1,0 +1,343 @@
+/* Reset global */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Estilo global para el body */
+body {
+    font-family: 'Roboto', sans-serif;
+    background: #000; /* Fondo negro para toda la página */
+    color: #333;
+    line-height: 1.6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh; /* Asegura que el body ocupe toda la altura de la pantalla */
+    padding: 10px;
+    position: relative; /* Necesario para el pseudo-elemento */
+}
+
+/* Agregar un fondo negro más grande */
+body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #000; /* Fondo negro */
+    z-index: -1; /* Coloca este fondo detrás del contenedor */
+    padding: 30px; /* Ajuste para hacer el fondo más grande y más ancho */
+}
+
+/* Contenedor principal */
+.container {
+    background: #fff;
+    padding: 20px; /* Ajuste para que haya espacio alrededor del contenido */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    width: 150%;
+    max-width: 1300px; /* Aumentar el tamaño máximo */
+    box-sizing: border-box;
+    text-align: center;
+    margin-top: auto;
+    margin-left: 20px; /* Ajuste para hacer que el contenedor sea más ancho */
+    margin-right: 20px; /* Ajuste para hacer que el contenedor sea más ancho */
+}
+
+/* Títulos en negrita */
+h1, h2, h3, h4, h5, h6 {
+    font-weight: bold;
+}
+
+/* Título principal */
+h2 {
+    text-align: center;
+    color: #1606f8;
+    margin-bottom: 20px;
+}
+
+/* Estilo para formularios e inputs */
+input[type="file"],
+input[type="text"],
+input[type="number"],
+button,
+select {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 18px;
+    box-sizing: border-box;
+}
+
+/* Estilo específico para el input de tipo file */
+input[type="file"] {
+    background-color: #f5f5f5;
+}
+
+/* Estilo de botones */
+button {
+    background-color: #0a0a0a;
+    color: white;
+    cursor: pointer;
+    border: none;
+    transition: background-color 0.3s ease;
+    width: auto; /* Los botones no ocupan todo el ancho */
+    margin: 5px 0; /* Separación entre botones */
+    height: 80px;
+    width: 220px;
+    font-weight: bold; /* Letras en negrita */
+}
+
+/* Botón al pasar el mouse */
+button:hover {
+    background-color: #1404d1; /* Cambio para mejorar la experiencia visual */
+}
+
+/* Posicionamos los botones encima del campo "Código" */
+#formulario {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    position: relative; /* Necesario para posicionar los botones dentro del formulario */
+}
+
+/* Estilo específico para los botones encima del campo de código */
+#formulario button {
+    position: absolute;
+    right: 20px; /* Los botones se alinean a la derecha */
+    top: calc(20px + 5cm); /* Coloca los botones encima del campo de código */
+}
+
+/* Estilo para la imagen de código de barras */
+.barcode {
+    margin-top: 10px;
+    max-width: 200%;
+    height: auto;
+}
+
+/* Estilo para las etiquetas */
+.etiqueta {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #1606f8;
+    margin: 10px;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+}
+
+.etiqueta p {
+    font-size: 16px;
+    margin-top: 10px;
+    color: #333;
+}
+
+/* Contenedor de las etiquetas */
+#etiquetas {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end; 
+    margin-top: 20px;
+    gap: 20px; 
+}
+
+/* Modal */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+    background-color: #fff;
+    margin: 10% auto;
+    padding: 20px;
+    border-radius: 8px;
+    width: 80%;
+    max-width: 800px;
+    height: auto;
+    overflow-y: auto;
+    max-height: 80vh;
+    position: relative; /* Hacemos el contenedor del modal relativo */
+}
+
+/* Modal header (donde se encuentra la X) */
+.modal-header {
+    font-size: 20px;
+    margin-bottom: 20px;
+    color: #1606f8;
+}
+
+/* Estilo para la X en la esquina superior derecha */
+.close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 40px;
+    color: #000;
+    cursor: pointer;
+    z-index: 2; /* Asegura que la X esté sobre otros elementos */
+}
+
+.close:hover {
+    color: red;
+}
+
+/* Tabla dentro del modal */
+.modal-table-wrapper {
+    max-height: 50vh;
+    overflow-y: auto;
+}
+
+.modal-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.modal-table th, .modal-table td {
+    padding: 12px;
+    text-align: left;
+    border: 1px solid #ddd;
+}
+
+.modal-table th {
+    background-color: #1606f8;
+    color: white;
+}
+
+.modal-table td button {
+    background-color: #f44336;
+    border: none;
+    padding: 5px 10px;
+    color: white;
+    cursor: pointer;
+}
+
+.modal-table td button:hover {
+    background-color: #d32f2f;
+}
+
+/* Estilo de búsqueda */
+.search-input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* Estilos para impresión */
+@media print {
+    body * {
+        visibility: hidden;
+    }
+
+    .etiqueta, .etiqueta * {
+        visibility: visible;
+    }
+
+    .etiqueta {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: auto;
+        height: auto;
+        page-break-before: always;
+    }
+
+    @page {
+        size: auto;
+        margin: 0;
+    }
+}
+
+/* Estilos responsivos */
+@media (max-width: 768px) {
+    .container {
+        padding: 15px;
+    }
+}
+
+/* Estilo para el logo */
+#logo-container {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+#logo-container img {
+    max-width: 100%;
+    height: auto;
+    max-height: 150px;
+}
+
+/* Estilos para el contenedor de formulario */
+#contenedorFormulario {
+    height: 800px;
+    overflow-y: auto;
+    width: 100%;
+    border: 1px solid #ccc;
+    padding: 20px;
+    margin-top: 100px;
+}
+
+/* Estilo para el formulario */
+#formulario {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* Cargando animation */
+#loading {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100px;
+    height: 100px;
+    border: 10px solid #f3f3f3;
+    border-top: 10px solid #3498db;
+    border-radius: 50%;
+    animation: spin 2s linear infinite;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 16px;
+    color: #3498db;
+}
+
+/* Animación de rotación */
+@keyframes spin {
+    0% { transform: translate(-50%, -50%) rotate(0deg); }
+    100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+/* Estilo para el botón de cierre */
+.close {
+    position: absolute;
+    top: -30px;
+    right: 10px;
+    font-size: 100px;
+    color: #000;
+    cursor: pointer;
+}
+
+.close:hover {
+    color: red;
+}
